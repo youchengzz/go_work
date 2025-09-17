@@ -7,6 +7,14 @@ import (
 )
 
 // https://leetcode.cn/problems/single-number/
+func singleNumber(nums []int) int {
+	a := 0
+	for _, num := range nums {
+		a = a ^ num
+		fmt.Println(a)
+	}
+	return a
+}
 
 // 回文数
 func palindromic(x int) bool {
@@ -69,25 +77,31 @@ func longestCommonPrefix(strs []string) string {
 		return strs[0]
 	}
 	charArray := []rune(strs[0])
+	fmt.Println(charArray)
 	if len(charArray) == 0 {
 		return ""
 	}
-	flag := make([]int, 0)
-
+	flag := 0
 	for i := 1; i < len(strs); i++ {
 		chars := []rune(strs[i])
+		fmt.Println(chars)
 		for j := 0; j < len(charArray); j++ {
 			if j > len(chars)-1 {
-				flag = append(flag, len(chars)-1)
+				flag = j
 				continue
 			}
 			if chars[j] != charArray[j] {
-				flag = append(flag, j-1)
-				break
+				flag = j - 1
+				if j == 0 {
+					return ""
+				}
 			}
+
 		}
 	}
-
+	if flag == -1 {
+		return ""
+	}
 	return strs[0][:flag+1]
 }
 
@@ -148,7 +162,8 @@ func twoSum(nums []int, target int) []int {
 }
 
 func main() {
-	s := "(){}}{"
-	b := isValid(s)
+	// var a []string = []string{"aba", "c", "b", "a", "ab"}
+	var a []string = []string{"flower", "flower", "fo"}
+	b := longestCommonPrefix(a)
 	fmt.Println(b)
 }
