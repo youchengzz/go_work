@@ -1,0 +1,7 @@
+# 对所有文件默认使用LF
+* text=auto eol=lf
+
+# 对Go相关文件强制使用LF
+*.go text eol=lf
+go.mod text eol=lf
+go.sum text eol=lf
