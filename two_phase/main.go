@@ -151,10 +151,27 @@ func Channel2(ch chan int) {
 	wg.Done()
 }
 
-/**
+/*
+*
 题目 ：实现一个带有缓冲的通道，生产者协程向通道中发送100个整数，消费者协程从通道中接收这些整数并打印。
 考察点 ：通道的缓冲机制。
-**/
+*
+*/
+func product(ch chan<- int) {
+	for i := 0; i < 10; i++ {
+		ch <- i
+		fmt.Println("生产数据", i)
+	}
+	close(ch)
+	wg.Done()
+}
+func consume(ch <-chan int) {
+	for v := range ch {
+		fmt.Println("消费数据", v)
+		time.Sleep(time.Second * 2)
+	}
+	wg.Done()
+}
 
 /*
 *
@@ -221,10 +238,18 @@ func main() {
 	// wg.Add(1)
 	// go Channel2(ch)
 	// wg.Wait()
-	for i := 0; i < 10; i++ {
-		wg.Add(1)
-		fmt.Println("开启协程", i)
-		go lock(i)
-	}
+
+	// for i := 0; i < 10; i++ {
+	// 	wg.Add(1)
+	// 	fmt.Println("开启协程", i)
+	// 	go lock(i)
+	// }
+	// wg.Wait()
+
+	ch := make(chan int, 3)
+	wg.Add(1)
+	go product(ch)
+	wg.Add(1)
+	go consume(ch)
 	wg.Wait()
 }
