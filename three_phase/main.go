@@ -1,9 +1,5 @@
 package main
 
-import (
-	"Go-Project/go_work/three_phase/blogs"
-)
-
 func main() {
 	// AddStudent()
 	// SelectByAge(18)
@@ -17,6 +13,6 @@ func main() {
 	// res := sqlx.SelectBooks()
 	// res := blogs.SelectUserPost(1)
 	// res := blogs.SelectCountComment()
-	blogs.DeleteComment(8)
+	// blogs.DeleteComment(8)
 	// fmt.Println(res)
 }
