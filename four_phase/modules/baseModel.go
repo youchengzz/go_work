@@ -3,7 +3,7 @@ package modules
 import "time"
 
 type BaseModel struct {
-	Id        uint `gorm:"primarykey"`
-	CreatedAt time.Time
-	UpdatedAt time.Time
+	Id       uint      `gorm:"primarykey"`
+	CreateAt time.Time `gorm:"autoCreateTime"`
+	UpdateAt time.Time `gorm:"autoUpdateTime"`
 }

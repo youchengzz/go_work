@@ -1,0 +1,6 @@
+db:
+  url: 127.0.0.1:3306
+  username: root
+  password: 123456
+  database: belogs
+key: 123456789abc
